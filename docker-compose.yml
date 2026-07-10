@@ -15,13 +15,17 @@ services:
         condition: service_completed_successfully
     volumes:
       - ${UPLOAD_LOCATION}:/root/.affine/storage
-      - ${CONFIG_LOCATION}:/root/.affine/config
+      # Change this line to map the single file directly:
+      - ${CONFIG_LOCATION}:/root/.affine/config/config.json
     env_file:
       - .env
     environment:
       - REDIS_SERVER_HOST=redis
       - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${DB_DATABASE:-affine}
       - AFFINE_INDEXER_ENABLED=false
+      # Forward your secure keys into the container
+      - COPILOT_OPENAI_API_KEY=${GEMINI_API_KEY}
+      - COPILOT_OPENAI_BASE_URL=${GEMINI_BASE_URL}
     restart: unless-stopped
 
   affine_migration:
@@ -29,7 +33,8 @@ services:
     container_name: affine_migration_job
     volumes:
       - ${UPLOAD_LOCATION}:/root/.affine/storage
-      - ${CONFIG_LOCATION}:/root/.affine/config
+      # Change this line to map the single file directly:
+      - ${CONFIG_LOCATION}:/root/.affine/config/config.json
     command: ['sh', '-c', 'node ./scripts/self-host-predeploy.js']
     env_file:
       - .env
@@ -37,6 +42,9 @@ services:
       - REDIS_SERVER_HOST=redis
       - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${DB_DATABASE:-affine}
       - AFFINE_INDEXER_ENABLED=false
+      # Forward your secure keys into the container
+      - COPILOT_OPENAI_API_KEY=${GEMINI_API_KEY}
+      - COPILOT_OPENAI_BASE_URL=${GEMINI_BASE_URL}
     depends_on:
       postgres:
         condition: service_healthy

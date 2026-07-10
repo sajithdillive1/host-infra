@@ -1,1 +1,6 @@
 .env
+.affine
+
+# Allow tracking code layouts, ignore persistent data if generated locally
+postgres/
+storage/
