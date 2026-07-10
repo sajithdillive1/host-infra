@@ -1,12 +1,11 @@
 {
-  "$schema": "https://github.com/toeverything/affine/releases/latest/download/config.schema.json",
+  "$schema": "https://github.com",
   "copilot": {
     "enabled": true,
     "providers": {
-      "openai": {
+      "gemini": {
         "apiKey": "process.env.COPILOT_OPENAI_API_KEY",
-        "baseUrl": "process.env.COPILOT_OPENAI_BASE_URL",
-        "oldApiStyle": true
+        "baseURL": "https://googleapis.com"
       }
     }
   }
