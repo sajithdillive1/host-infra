@@ -5,7 +5,8 @@
     "providers": {
       "gemini": {
         "apiKey": "process.env.COPILOT_OPENAI_API_KEY",
-        "baseURL": "https://googleapis.com"
+        "baseURL": "https://googleapis.com",
+        "oldApiStyle": true
       }
     }
   }

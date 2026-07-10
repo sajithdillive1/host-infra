@@ -1,0 +1,15 @@
+{
+    "override_enabled": true,
+    "scenarios": {
+        "audio_transcribing": "openai/gemini-2.5-flash",
+        "chat": "openai/gemini-2.5-flash",
+        "embedding": "openai/gemini-embedding-001",
+        "image": "gpt-image-1",
+        "rerank": "gpt-4.1",
+        "coding": "openai/gemini-2.5-flash",
+        "complex_text_generation": "openai/gemini-2.5-flash",
+        "quick_decision_making": "openai/gemini-2.5-flash",
+        "quick_text_generation": "openai/gemini-2.5-flash",
+        "polish_and_summarize": "openai/gemini-2.5-flash"
+    }
+}
